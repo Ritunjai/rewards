@@ -13,15 +13,16 @@ function App() {
   const getUserData = () => {
     axios.get('https://my-json-server.typicode.com/Ritunjai/dataset/userdata')
       .then(response => {
-        console.log(response, "responseeee")
+        // Updating the state value
         setuserData(response?.data)
       })
       .catch(error => {
-        console.log("error", error)
+        // Handling the error
+        // console.log("error", error)
       })
   }
 
-  function calculateRewards(price) {
+  function calculatePoints(price) {
     if (price >=50 && price < 100) {
         return price-50;
     } else if (price >100){
@@ -41,7 +42,7 @@ function App() {
         {userData?.length > 0 ? userData.map(item => <tr>
           <td>{item.name}</td>
           <td>{item.amount}</td>
-          <td>{calculateRewards(item.amount)}</td>
+          <td>{calculatePoints(item.amount)}</td>
         </tr>) : 
         <>     Loading...   </>
         }
